@@ -1,10 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
+
+const Portfolio = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800">
+      {/* Navigation Bar */}
+      <nav className="sticky top-0 bg-white shadow-md z-50">
+        <div className="container mx-auto flex justify-between items-center p-4">
+          <h1 className="text-2xl font-bold">Mehrdad's Portfolio</h1>
+          <div className="space-x-4">
+            <a href="#projects" className="hover:text-indigo-500">Projects</a>
+            <a href="#about" className="hover:text-indigo-500">About</a>
+            <a href="#skills" className="hover:text-indigo-500">Skills</a>
+            <a href="#contact" className="hover:text-indigo-500">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Header */}
+      <header className="flex flex-col items-center text-center py-20 bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+        <h1 className="text-6xl font-extrabold mb-4">Mehrdad's Data Science Portfolio</h1>
+        <p className="text-xl max-w-2xl">Exploring Data. Creating Insights. Driving Innovation.</p>
+      </header>
+
+      {/* Search Bar */}
+      <div className="flex justify-center mt-10">
+        <div className="flex items-center bg-white shadow-lg rounded-full overflow-hidden w-full max-w-lg">
+          <input
+            type="text"
+            placeholder="Search projects, skills..."
+            className="w-full px-4 py-3 focus:outline-none"
+          />
+          <Button className="p-3 bg-indigo-500 text-white">
+            <Search className="h-6 w-6" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-16 container mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projectData.map((project, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="rounded-xl shadow-lg bg-white overflow-hidden transition-transform duration-300"
+            >
+              <Card>
+                <img src={project.image} alt={project.title} className="w-full h-52 object-cover" />
+                <CardContent className="p-5">
+                  <h2 className="text-2xl font-semibold mb-3">{project.title}</h2>
+                  <p className="text-gray-600 text-sm mb-5">{project.description}</p>
+                  <Button className="bg-indigo-500 text-white w-full">View Project</Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-16 bg-gray-50">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">About Me</h2>
+          <p className="text-lg max-w-3xl mx-auto">
+            I am Mehrdad, a passionate data scientist with expertise in machine learning, energy systems, and optimization algorithms. My work focuses on applying advanced data techniques to solve real-world problems in energy and beyond. I thrive on building innovative solutions that bridge the gap between data and actionable insights.
+          </p>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-16">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Skills</h2>
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {skillsData.map((skill, index) => (
+              <li
+                key={index}
+                className="bg-white shadow-lg rounded-lg p-5 text-center transition-transform duration-300 hover:scale-105"
+              >
+                <span className="text-gray-800 font-medium text-lg">{skill}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 bg-gray-50">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Contact</h2>
+          <p className="text-gray-600 mb-4 text-lg">
+            Interested in collaborating or learning more? Feel free to reach out!
+          </p>
+          <form className="bg-white shadow-lg rounded-lg p-6 max-w-xl mx-auto">
+            <div className="mb-5">
+              <label className="block text-gray-700 mb-2 font-medium">Name</label>
+              <input
+                type="text"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Your Name"
+              />
+            </div>
+            <div className="mb-5">
+              <label className="block text-gray-700 mb-2 font-medium">Email</label>
+              <input
+                type="email"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Your Email"
+              />
+            </div>
+            <div className="mb-5">
+              <label className="block text-gray-700 mb-2 font-medium">Message</label>
+              <textarea
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Your Message"
+                rows="4"
+              ></textarea>
+            </div>
+            <Button className="bg-indigo-500 text-white w-full py-3">Send Message</Button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-6">
+        <div className="container mx-auto text-center">
+          <p>&copy; 2025 Mehrdad. All rights reserved.</p>
+          <div className="flex justify-center space-x-4 mt-4">
+            <a href="#" className="hover:text-indigo-500">LinkedIn</a>
+            <a href="#" className="hover:text-indigo-500">GitHub</a>
+            <a href="#" className="hover:text-indigo-500">Twitter</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+const projectData = [
+  {
+    title: "Energy Optimization Algorithm",
+    description: "Developed an algorithm to optimize energy use in microgrids using machine learning techniques.",
+    image: "https://via.placeholder.com/400x200",
+  },
+  {
+    title: "Battery Data Analysis",
+    description: "Analyzed second-life battery performance for repurposing in microgrid applications.",
+    image: "https://via.placeholder.com/400x200",
+  },
+  {
+    title: "Solar Power Forecasting",
+    description: "Designed models to predict solar power generation based on weather data.",
+    image: "https://via.placeholder.com/400x200",
+  },
+];
+
+const skillsData = [
+  "Python",
+  "SQL",
+  "Machine Learning",
+  "Data Visualization",
+  "Energy Systems",
+  "Optimization Algorithms",
+  "Deep Learning",
+  "Reinforcement Learning",
+  "AWS",
+  "Azure",
+  "Tableau",
+  "Pandas",
+];
+
+export default Portfolio;
